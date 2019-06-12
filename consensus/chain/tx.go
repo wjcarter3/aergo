@@ -113,6 +113,9 @@ func GatherTXs(hs component.ICompSyncRequester, bState *state.BlockState, txOp T
 	}
 	defer UnlockChain()
 
+	//XXX TODO remove temp log
+	logger.Info().Msg("start gathering tx after locking")
+
 	txIn := FetchTXs(hs, maxBlockBodySize)
 	nCand = len(txIn)
 	if nCand == 0 {
