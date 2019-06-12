@@ -28,9 +28,9 @@ var (
 	ErrorBlockVerifyReceiptRoot    = errors.New("Block verify failed, because receipt root hash is not equal")
 )
 
-func NewBlockValidator(comm component.IComponentRequester, sdb *state.ChainStateDB) *BlockValidator {
+func NewBlockValidator(comm component.IComponentRequester, sdb *state.ChainStateDB, useMempool bool) *BlockValidator {
 	bv := BlockValidator{
-		signVerifier: NewSignVerifier(comm, sdb, VerifierCount, dfltUseMempool),
+		signVerifier: NewSignVerifier(comm, sdb, VerifierCount, useMempool),
 		sdb:          sdb,
 	}
 

@@ -106,9 +106,7 @@ func GatherTXs(hs component.ICompSyncRequester, bState *state.BlockState, txOp T
 		nCand      int
 	)
 
-	if logger.IsDebugEnabled() {
-		logger.Debug().Msg("start gathering tx")
-	}
+	logger.Info().Msg("start gathering tx")
 
 	if err := LockChain(); err != nil {
 		return nil, ErrBestBlock
@@ -123,12 +121,11 @@ func GatherTXs(hs component.ICompSyncRequester, bState *state.BlockState, txOp T
 	txRes := make([]types.Transaction, 0, nCand)
 
 	defer func() {
-			logger.Info().
-				Int("candidates", nCand).
-				Int("collected", nCollected).
-				Msg("transactions collected")
+		logger.Info().
+			Int("candidates", nCand).
+			Int("collected", nCollected).
+			Msg("transactions collected")
 	}()
-
 
 	op := NewCompTxOp(txOp)
 

@@ -236,7 +236,7 @@ func NewChainService(cfg *cfg.Config) *ChainService {
 		panic("invalid config: blockchain")
 	}
 
-	cs.validator = NewBlockValidator(cs, cs.sdb)
+	cs.validator = NewBlockValidator(cs, cs.sdb, cfg.Blockchain.UseMempoolVerify)
 	cs.BaseComponent = component.NewBaseComponent(message.ChainSvc, cs, logger)
 	cs.chainManager = newChainManager(cs, cs.Core)
 	cs.chainWorker = newChainWorker(cs, defaultChainWorkerCount, cs.Core)

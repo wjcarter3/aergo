@@ -89,6 +89,7 @@ type BlockchainConfig struct {
 	ForceResetHeight uint64 `mapstructure:"forceresetheight" description:"best height to reset chain manually"`
 	ZeroFee          bool   `mapstructure:"zerofee" description:"enable zero-fee mode(works only on private network)"`
 	VerifyOnly       bool   `mapstructure:"verifyonly" description:"In verify only mode, server verifies block chain of disk. server never modifies block chain'"`
+	UseMempoolVerify bool   `mapstructure:"usemempoolverify" description:"Whether to use mempool to verify sign of tx`
 }
 
 // MempoolConfig defines configurations for mempool service
@@ -205,6 +206,7 @@ coinbaseaccount = "{{.Blockchain.CoinbaseAccount}}"
 maxanchorcount = "{{.Blockchain.MaxAnchorCount}}"
 verifiercount = "{{.Blockchain.VerifierCount}}"
 forceresetheight = "{{.Blockchain.ForceResetHeight}}"
+usemempoolverify = "{{.Blockchain.UseMempoolVerify}}"
 
 [mempool]
 showmetrics = {{.Mempool.ShowMetrics}}
