@@ -35,7 +35,7 @@ type txPutter struct {
 }
 
 func newPutter(ctx context.Context, txs []*types.Tx, hub component.ICompSyncRequester, timeout time.Duration) *txPutter {
-	m := &txPutter{ctx:ctx, Txs: txs, hub: hub, actorTimeout:defaultActorTimeout}
+	m := &txPutter{ctx:ctx, Txs: txs, hub: hub, actorTimeout:timeout}
 	m.logger = log.NewLogger("txputter")
 	txSize := len(m.Txs)
 	m.txSize = txSize
